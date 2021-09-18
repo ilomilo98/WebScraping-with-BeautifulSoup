@@ -2,12 +2,9 @@ import pandas as pd
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
-import requests 
 import datetime
-import re
 import csv
 from collections import Counter, namedtuple
-from pathlib import Path
 from datetime import date, timedelta
 
 
