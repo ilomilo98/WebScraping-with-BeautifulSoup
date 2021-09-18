@@ -35,13 +35,12 @@ page = requests.get(urls[0])
 
 soup = BeautifulSoup(page.content, 'html.parser')
 
-soup.table 
-soup.title.text
 
 tags = [tag.name for tag in soup.body.find_all(True)]
 tables = soup.find_all('table', class_='table table-compressed table-striped table-bordered')
 rows = tables[0].find_all('tr')
 headers = [th.text for th in rows[0].find_all('th')]
+td = soup.tbody.find_all("td")
 
 headers.remove("Wind")
 head_ = [th.text for th in rows[1].find_all('th')]
@@ -49,7 +48,6 @@ headers.insert(5, head_[0])
 headers.insert(6, head_[1])
 headers.insert(7, head_[2])
 
-td = soup.tbody.find_all("td")
 
 new_table = []
 trow = soup.tbody.find_all("tr")
@@ -61,7 +59,6 @@ for tr in trow:
     
 new_table_1 = pd.DataFrame(new_table)
 new_table_1.columns = headers
-#a = ilo.replace({"\n":" "}, inplace=False)
 data_table=new_table_1.apply(lambda x:x.str.replace("\n"," "))
 data_table_ =data_table.apply(lambda x:x.str.replace(",","."))
 
