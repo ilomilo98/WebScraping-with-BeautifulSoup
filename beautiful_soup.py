@@ -10,8 +10,8 @@ from datetime import date, timedelta
 
 #Let's get 1 day data
 
-sdate = date(2018, 2, 1)   # start date
-edate = date(2018, 2, 2)   # end date
+sdate = date(2021, 9, 17)   # start date
+edate = date(2021, 9, 17)   # end date
 
 delta = edate - sdate       # as timedelta
 
@@ -31,7 +31,7 @@ for i in range(delta.days + 1):
         
 #URL = 'https://www.ilmateenistus.ee/ilm/ilmavaatlused/vaatlusandmed/tunniandmed/?lang=en&filter%5Bdate%5D=01.02.2018&filter%5Bhour%5D=0'
 
-page = requests.get(urls[0])
+page = requests.get(urls[5])
 
 soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -72,7 +72,7 @@ TS_ = pd.DataFrame({"Timestamp" : timestamp})
 TS=TS_.apply(lambda x:x.str.replace(".","-"))
 
 result = pd.concat([TS,data_table_], axis=1)
-result
+result.head()
 
         
         
